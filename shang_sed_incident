@@ -1,0 +1,25 @@
+title AGN (QSO-type) and dust transmitted through BLR for SHANG SPECTRA fitted to 0.7-0.3
+//This input script is run once to compute the transmitted spectrum of a BLR illuminated by an AGN.
+AGN T = 4e5 k, a(ox) = -1.28, a(uv)=-0.3, a(x)=-0.85
+luminosity (total) 44.91 //log erg/s //luminosities adjusted so that log Ltot = 44.5
+radius inner 16.79 outer 17.79 //0.02 < r < 0.2 pc : across the dust sublimation zone
+blackbody, T=986000 K , radius 11.17
+radius inner 16.79 outer 17.79
+blackbody, T=900 K , radius 17.62
+radius inner 16.79 outer 17.79
+blackbody, T=300 K , radius 18.22
+radius inner 16.79 outer 17.79 
+blackbody, T=200 K , radius 18.83
+radius inner 16.79 outer 17.69
+blackbody, T=150 K , radius 18.93      //19.38
+radius inner 16.79 outer 17.79 //
+#blackbody, T=90 K , radius 19.03           //19.38
+#radius inner 16.79 outer 17.79 //
+CMB
+hden 9 //log H cm^-3, typical for BLR
+filling factor=1e-3 //from AGN3
+#stop zone 1
+iterate to convergence
+save transmitted continuum "_blr.txt" last
+save continuum ".con" units Angstrom last
+print last
